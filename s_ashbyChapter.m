@@ -4,13 +4,17 @@
 % coneMosaic - The rectangular mosaic that I wrote originally
 %
 
+%% Run from inside this directory.
+
+chdir(fileparts(which('s_ashbyChapter.m')));
+
 %% Open up the app if you want some of those images
 
-ISETBioCSFGenerator
+% ISETBioCSFGenerator
 
 %% Spectral band RGB images
 
-scene = sceneFromFile;
+chdir(fileparts(which('s_ashbyChapter.m')));
 sceneWindow(scene);
 
 nBands = 10;
@@ -125,9 +129,6 @@ title('10 deg eccentricity');
 % directory.
 %
 % save('oiData','obj','oiSamplingGridDegs','varargin');
-
-% We can load the objects and parameters.
-chdir(fullfile(isetbioRootPath,'projects'));
 
 % Load the variables
 load('oiData','obj','oiSamplingGridDegs','varargin');

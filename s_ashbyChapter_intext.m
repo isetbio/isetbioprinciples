@@ -11,11 +11,15 @@ thisDir = '/Volumes/GoogleDrive/My Drive/Papers/Book Chapters/2020 Math Psych Bo
 
 %% Open up the app if you want some of those images
 
-ISETBioCSFGenerator
+% ISETBioCSFGenerator
+
+%% Run from inside the directory
+
+chdir(fileparts(which('s_ashbyChapter.m')));
 
 %% Spectral band RGB images
 
-scene = sceneFromFile;
+scene = sceneFromFile('stanfordQuadEntryLowRes.png','rgb');
 sceneWindow(scene);
 
 nBands = 10;
@@ -132,7 +136,7 @@ title('10 deg eccentricity');
 % save('oiData','obj','oiSamplingGridDegs','varargin');
 
 % We can load the objects and parameters.
-chdir(fullfile(isetbioRootPath,'projects'));
+% chdir(fullfile(isetbioRootPath,'projects'));
 
 % Load the variables
 load('oiData','obj','oiSamplingGridDegs','varargin');
@@ -281,3 +285,4 @@ set(gca,'Color','k');
 cmG.absorptions = gaussNoise;
 cmG.name = 'gaussian';
 % cmG.window;
+%% END
