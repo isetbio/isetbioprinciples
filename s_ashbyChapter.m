@@ -80,7 +80,7 @@ ylabel('Probability density')
 
 % Draft of an app
 
-theCones = coneMosaic;
+theCones = coneMosaicRect;
 theCones.wave = 400:1:700;
 theLens = Lens;
 theLens.wave = 400:1:700;
@@ -223,7 +223,7 @@ eTime = 0.002;
 cDensity = [0 0 1 0];
 fov = 6;
 
-cmP = coneMosaic;
+cmP = coneMosaicRect;
 cmP.setSizeToFOV(fov);
 % All M cones
 cmP.spatialDensity = cDensity;
@@ -247,7 +247,7 @@ cmP.name = 'photon';
 % cmP.window;
 
 %%
-cmG = coneMosaic;
+cmG = coneMosaicRect;
 cmG.setSizeToFOV(fov);
 cmG.spatialDensity = cDensity;
 cmG.integrationTime = eTime;
