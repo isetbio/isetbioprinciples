@@ -6,7 +6,11 @@
 
 %% Run from inside this directory.
 
-chdir(fileparts(which('s_ashbyChapter.m')));
+% Stored in
+%   isetbioprojects/isetbioprinciples
+%
+
+% chdir(fileparts(which('s_ashbyChapter.m')));
 
 %% Open up the app if you want some of those images
 
@@ -14,7 +18,7 @@ chdir(fileparts(which('s_ashbyChapter.m')));
 
 %% Spectral band RGB images
 
-chdir(fileparts(which('s_ashbyChapter.m')));
+scene = sceneFromFile('woodDuck.png','rgb');
 sceneWindow(scene);
 
 nBands = 10;
@@ -144,14 +148,14 @@ load('oiData','obj','oiSamplingGridDegs','varargin');
 % The meaning of the parameters is:
 %    centerPos = oiSamplingGridDegs;
 %{
-varargin =
-    {'zernikeDataBase'}    {'Polans2015'}
-    {'subjectID'}            {[10]}
-    {'pupilDiameterMM'}      {[3]}
-    {'subtractCentral…'}     {[0]}
-    {'zeroCenterPSF'}        {[1]}
-    {'flipPSFUpsideDown'}    {[1]}
-    {'wavefrontSpatia…'}    {[301]}
+varargin = ...
+    {'zernikeDataBase'} ,   {'Polans2015'}
+    {'subjectID'}        ,    {[10]}
+    {'pupilDiameterMM'}  ,    {[3]}
+    {'subtractCentral…'} ,    {[0]}
+    {'zeroCenterPSF'}    ,    {[1]}
+    {'flipPSFUpsideDown'},    {[1]}
+    {'wavefrontSpatia…'} ,   {[301]};
 % Convert the varargin to a struct that we can edit
 args = struct;
 for ii=1:2:numel(varargin)
@@ -164,6 +168,7 @@ mp(1:4,:) = repmat([0.5 0.5 0.5],[4,1]);
 
 %%
 % Choose Artalright eye, subject 1?? 74, 26.  or 85
+thisMosaic = cMosaic;
 centers = [2,0; 8,0; 20,0];
 theW = [7 3];
 kk = 1;
@@ -182,7 +187,7 @@ for jj=1:numel(theW)
         args.flipPSFUpsideDown = true;
         args.wavefrontSpatialSamples = 301;
         
-        [oiEnsemble, psfEnsemble] = obj.oiEnsembleGenerate(centerPos,args);
+        [oiEnsemble, psfEnsemble] = thisMosaic.oiEnsembleGenerate(centerPos,args);
         thisPSF = psfEnsemble{1};
         
         thisW = theW(jj);   % Select a wavelength, % 3 is 450 nm, 7 is 550 nm
