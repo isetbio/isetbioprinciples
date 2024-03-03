@@ -206,6 +206,23 @@ for jj=1:numel(theW)
     end
 end
 
+%% Show an image ontop of the mosaic
+
+sceneP = sceneCreate('point array',512,64);
+sceneP = sceneSet(sceneP,'fov',1);
+oiH = oiCreate('human');
+oiH = oiCompute(oiH,sceneP);
+oiWindow(oiH);
+
+cones = coneMosaicRect;
+cones.compute(oiH);
+cones.window;
+
+% 
+cones = cMosaic('eccentricity degs',[0 3]);
+allE = cones.compute(oiH);
+cones.plot('excitations',allE);
+
 
 %% To get cone diameter as a function of eccentricity
 
